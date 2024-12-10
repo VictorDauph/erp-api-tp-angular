@@ -1,12 +1,17 @@
 [
-    {
-        "id": 1,
-        "name": "Samsung Galaxy 3",
-        "stock": 100
-    },
-    {
-        "id": 2,
-        "name": "Iphone carotte",
-        "stock": 50
-    }
+  {
+    "id": 1,
+    "name": "Samsung Galaxy 3",
+    "stock": 95
+  },
+  {
+    "id": 2,
+    "name": "Iphone carotte",
+    "stock": 50
+  },
+  {
+    "id": 3,
+    "name": "Product C",
+    "stock": 30
+  }
 ]

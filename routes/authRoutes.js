@@ -11,7 +11,7 @@ router.post("/login", (req, res) => {
     const user = db.users.find((u) => u.username === username);
     if (!user) return res.status(404).send("User not found");
 
-    const passwordIsValid = true//bcrypt.compareSync(password, user.password); => mock de la verif du mdp
+    const passwordIsValid = password === "pwd"//bcrypt.compareSync(password, user.password); => mock de la verif du mdp
     if (!passwordIsValid) return res.status(401).send("Invalid Credentials");
 
     const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, {
