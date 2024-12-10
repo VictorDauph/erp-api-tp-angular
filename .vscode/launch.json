@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch API Server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/server.js", // Point d'entrée de l'application
+            "env": {
+                "NODE_ENV": "development" // Définir une variable d'environnement si nécessaire
+            },
+            "cwd": "${workspaceFolder}", // Répertoire de travail actuel
+            "console": "integratedTerminal" // Utiliser le terminal intégré pour la sortie
+        }
+    ]
+}

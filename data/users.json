@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "role": "admin",
+        "password": "$2a$08$CjwQZj6CHGQpq/kKHSoLOOcUKJgZRVRRZdHUpWljy3D0Z4rVGGqIu"
+    },
+    {
+        "id": 2,
+        "username": "Jean",
+        "role": "user",
+        "password": "$2a$08$CjwQZj6CHGQpq/kKHSoLOOcUKJgZRVRRZdHUpWljy3D0Z4rVGGqIu"
+    },
+    {
+        "id": 3,
+        "username": "Alice",
+        "role": "user",
+        "password": "$2a$08$CjwQZj6CHGQpq/kKHSoLOOcUKJgZRVRRZdHUpWljy3D0Z4rVGGqIu"
+    },
+    {
+        "id": 4,
+        "username": "bgDu92",
+        "role": "user",
+        "password": "$2a$08$CjwQZj6CHGQpq/kKHSoLOOcUKJgZRVRRZdHUpWljy3D0Z4rVGGqIu"
+    }
+]
