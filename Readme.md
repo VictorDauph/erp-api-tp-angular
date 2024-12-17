@@ -1,235 +1,219 @@
-Voici un exemple de fichier `README.md` bien structuré pour votre API :
+# **ERP-API : Fake API pour Angular TP**
+
+Ce projet est une **Fake API** écrite en **Node.js** avec **Express** qui utilise des fichiers JSON comme base de données. Elle gère des entités suivantes : **Users**, **Products**, **Orders**, et **Customers**.  
+Un système d'authentification basé sur JWT permet la gestion des rôles **admin** et **user**.
 
 ---
 
-# ERP API - Gestion de Stocks, Produits, Commandes et Utilisateurs
+## **1. Prérequis**
 
-Cette API est un exemple d'application ERP minimaliste construite avec Node.js et Express. Elle permet de gérer les produits, les commandes, les utilisateurs et propose un système d'authentification JWT.
+Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
+
+- **Node.js** (version >= 14)
+- **npm** (Node Package Manager)
 
 ---
 
-## **Installation**
+## **2. Installation du projet**
 
-### 1. **Cloner le projet**
+1. **Clonez le projet** :
+   ```bash
+   git clone https://github.com/votre-repo/erp-api.git
+   cd erp-api
+   ```
+
+2. **Installez les dépendances** :
+   ```bash
+   npm install
+   ```
+
+3. **Structure des fichiers** :
+   Le projet suit cette structure :
+   ```
+   ERP-API/
+   │-- data/
+   │   ├── users.json
+   │   ├── products.json
+   │   ├── orders.json
+   │   └── customers.json
+   │-- middlewares/
+   │   └── authMiddleware.js
+   │-- routes/
+   │   ├── authRoutes.js
+   │   ├── userRoutes.js
+   │   ├── productRoutes.js
+   │   ├── orderRoutes.js
+   │   └── customerRoutes.js
+   │-- db.js
+   │-- server.js
+   │-- package.json
+   └── Readme.md
+   ```
+
+---
+
+## **3. Lancement du serveur**
+
+Pour démarrer le serveur :
+
 ```bash
-git clone <url_du_repository>
-cd erp-api
+npm start
 ```
 
-### 2. **Installer les dépendances**
-Assurez-vous d'avoir [Node.js](https://nodejs.org/) installé, puis exécutez :
-```bash
-npm install
+Le serveur démarre sur l'URL suivante :  
+`http://localhost:3000`
+
+---
+
+## **4. Routes disponibles**
+
+Voici les routes disponibles pour chaque entité avec leurs méthodes associées.
+
+### **4.1 Authentification (auth)**
+
+| Méthode | Route           | Description                              |
+|---------|-----------------|------------------------------------------|
+| `POST`  | `/api/auth/login` | Authentifie un utilisateur et retourne un token JWT. |
+
+#### Exemple de requête `POST /api/auth/login` :
+- **Body** :
+   ```json
+   {
+       "username": "admin",
+       "password": "admin123"
+   }
+   ```
+- **Réponse** :
+   ```json
+   {
+       "token": "eyJhbGciOiJIUzI1NiIsInR..."
+   }
+   ```
+
+---
+
+### **4.2 Utilisateurs (users)**
+
+Routes réservées uniquement aux **admins**.
+
+| Méthode  | Route             | Description                             |
+|----------|-------------------|-----------------------------------------|
+| `GET`    | `/api/users`      | Récupère la liste des utilisateurs.    |
+| `GET`    | `/api/users/:id`  | Récupère un utilisateur spécifique.    |
+| `POST`   | `/api/users`      | Crée un nouvel utilisateur.            |
+| `PUT`    | `/api/users/:id`  | Met à jour un utilisateur existant.    |
+| `DELETE` | `/api/users/:id`  | Supprime un utilisateur existant.      |
+
+---
+
+### **4.3 Produits (products)**
+
+| Méthode  | Route               | Description                             |
+|----------|---------------------|-----------------------------------------|
+| `GET`    | `/api/products`     | Récupère la liste des produits.        |
+| `GET`    | `/api/products/:id` | Récupère un produit spécifique.        |
+| `POST`   | `/api/products`     | Crée un nouveau produit.               |
+| `PUT`    | `/api/products/:id` | Met à jour un produit existant.        |
+| `DELETE` | `/api/products/:id` | Supprime un produit existant.          |
+
+---
+
+### **4.4 Commandes (orders)**
+
+| Méthode  | Route             | Description                             |
+|----------|-------------------|-----------------------------------------|
+| `GET`    | `/api/orders`     | Récupère la liste des commandes.       |
+| `GET`    | `/api/orders/:id` | Récupère une commande spécifique.      |
+| `POST`   | `/api/orders`     | Crée une nouvelle commande.            |
+| `PUT`    | `/api/orders/:id` | Met à jour une commande existante.     |
+| `DELETE` | `/api/orders/:id` | Supprime une commande existante.       |
+
+---
+
+### **4.5 Clients (customers)**
+
+| Méthode  | Route                | Description                             |
+|----------|----------------------|-----------------------------------------|
+| `GET`    | `/api/customers`     | Récupère la liste des clients.         |
+| `GET`    | `/api/customers/:id` | Récupère un client spécifique.         |
+| `POST`   | `/api/customers`     | Crée un nouveau client.                |
+| `PUT`    | `/api/customers/:id` | Met à jour un client existant.         |
+| `DELETE` | `/api/customers/:id` | Supprime un client existant.           |
+
+---
+
+## **5. Gestion des rôles et authentification**
+
+1. **Authentification** :
+   - Chaque requête (sauf `/api/auth/login`) nécessite un **token JWT**.
+   - Ajoutez le token dans l'en-tête `Authorization` :
+     ```http
+     Authorization: <token>
+     ```
+
+2. **Rôle `admin`** :
+   - Les routes des utilisateurs (`/api/users/*`) sont réservées aux utilisateurs ayant le rôle **admin**.
+
+---
+
+## **6. Exemples de données**
+
+### **6.1 Exemple `users.json`**
+```json
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "role": "admin",
+        "password": "$2a$08$encryptedpassword"
+    },
+    {
+        "id": 2,
+        "username": "user1",
+        "role": "user",
+        "password": "$2a$08$encryptedpassword"
+    }
+]
 ```
 
-### 3. **Démarrer l'API**
-```bash
-node server.js
+### **6.2 Exemple `products.json`**
+```json
+[
+    {
+        "id": 1,
+        "name": "Samsung Galaxy S21",
+        "stock": 100
+    }
+]
 ```
 
-L'API sera disponible par défaut sur `http://localhost:3000`.
-
----
-
-## **Données Initiales**
-
-L'API utilise des fichiers JSON pour simuler une base de données, placés dans le dossier `data/` :
-- `users.json`: Données des utilisateurs inscrits.
-- `products.json`: Données des produits.
-- `orders.json`: Données des commandes.
-
----
-
-## **Routes Disponibles**
-
-### **1. Authentification**
-
-#### **POST** `/auth/login`
-Authentifiez un utilisateur pour obtenir un token JWT.
-/!\ Le mot de passe de tous les utilisateurs est pwd
-
-- **Corps de la requête :**
-  ```json
-  {
-    "username": "admin",
-    "password": "pwd"
-  }
-  ```
-
-- **Réponse :**
-  ```json
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-  ```
-
----
-
-### **2. Produits**
-
-#### **GET** `/products`
-Récupérer tous les produits.
-
-- **En-tête :**
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
-- **Réponse :**
-  ```json
-  [
+### **6.3 Exemple `customers.json`**
+```json
+[
     {
-      "id": 1,
-      "name": "Product A",
-      "stock": 100
-    },
-    {
-      "id": 2,
-      "name": "Product B",
-      "stock": 50
+        "id": 1,
+        "name": "Jean Dupont",
+        "email": "jean.dupont@example.com",
+        "phone": "0612345678",
+        "address": "12 rue des Lilas, Paris, France"
     }
-  ]
-  ```
-
-#### **POST** `/products`
-Ajouter un nouveau produit.
-
-- **En-tête :**
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
-- **Corps de la requête :**
-  ```json
-  {
-    "name": "Product C",
-    "stock": 30
-  }
-  ```
-
-- **Réponse :**
-  ```json
-  {
-    "id": 3,
-    "name": "Product C",
-    "stock": 30
-  }
-  ```
+]
+```
 
 ---
 
-### **3. Commandes**
+## **7. Tests avec Postman**
 
-#### **GET** `/orders`
-Récupérer toutes les commandes.
-
-- **En-tête :**
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
-- **Réponse :**
-  ```json
-  [
-    {
-      "id": 1,
-      "productId": 1,
-      "quantity": 10,
-      "userId": 1,
-      "createdAt": "2024-12-01T10:30:00Z"
-    },
-    {
-      "id": 2,
-      "productId": 2,
-      "quantity": 5,
-      "userId": 1,
-      "createdAt": "2024-12-05T14:15:00Z"
-    }
-  ]
-  ```
-
-#### **POST** `/orders`
-Créer une nouvelle commande.
-
-- **En-tête :**
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
-- **Corps de la requête :**
-  ```json
-  {
-    "productId": 1,
-    "quantity": 5
-  }
-  ```
-
-- **Réponse :**
-  ```json
-  {
-    "id": 3,
-    "productId": 1,
-    "quantity": 5,
-    "userId": 1,
-    "createdAt": "2024-12-10T12:45:00Z"
-  }
-  ```
+Pour tester l'API :
+1. **Authentifiez-vous** avec `/api/auth/login` pour obtenir un token.
+2. Ajoutez le **token JWT** dans l'en-tête `Authorization` :
+   ```
+   Authorization: <token>
+   ```
+3. Testez les routes suivantes avec les méthodes `GET`, `POST`, `PUT` et `DELETE`.
 
 ---
 
-### **4. Utilisateurs**
+## **8. Conclusion**
 
-#### **GET** `/users`
-Récupérer la liste des utilisateurs sans afficher les mots de passe.
-
-- **En-tête :**
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
-- **Réponse :**
-  ```json
-  [
-    {
-      "id": 1,
-      "username": "admin",
-      "role": "admin"
-    },
-    {
-      "id": 2,
-      "username": "Jean",
-      "role": "user"
-    },
-    {
-      "id": 3,
-      "username": "Alice",
-      "role": "user"
-    }
-  ]
-  ```
-
----
-
-## **Authentification JWT**
-
-- Toutes les routes (sauf `/auth/login`) nécessitent un token JWT valide dans l'en-tête `Authorization`.
-- Exemple d'en-tête :
-  ```plaintext
-  Authorization: <votre_token>
-  ```
-
----
-
-## **Personnalisation**
-
-Vous pouvez modifier les données initiales dans les fichiers JSON situés dans `data/`. Par exemple, ajoutez des utilisateurs ou produits dans `users.json` ou `products.json`.
-
----
-
-## **Licence**
-
-Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, de le modifier et de le redistribuer.
-
---- 
-
-### Amusez-vous avec votre API ! 🚀
+Cette API vous permet de gérer des utilisateurs, des produits, des commandes et des clients. Vous pouvez l'utiliser comme backend pour un **TP Angular** ou toute autre application nécessitant une API RESTful simple.

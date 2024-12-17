@@ -14,7 +14,7 @@ router.post("/login", (req, res) => {
     const passwordIsValid = password === "pwd"//bcrypt.compareSync(password, user.password); => mock de la verif du mdp
     if (!passwordIsValid) return res.status(401).send("Invalid Credentials");
 
-    const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, {
+    const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, SECRET_KEY, {
         expiresIn: "10000h",
     });
     res.json({ token });

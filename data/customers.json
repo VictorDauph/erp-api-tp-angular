@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Jean Dupont",
+        "email": "jean.dupont@example.com",
+        "phone": "0612345678",
+        "address": "12 rue des Lilas, Paris, France",
+        "orders": [
+            1
+        ]
+    }
+]

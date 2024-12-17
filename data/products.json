@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "name": "Samsung Galaxy 3",
-        "stock": 95
+        "name": "Product A",
+        "stock": 35
     },
     {
         "id": 2,
@@ -13,5 +13,10 @@
         "id": 3,
         "name": "Huawey wey",
         "stock": 30
+    },
+    {
+        "id": 4,
+        "name": "Product C",
+        "stock": 35
     }
 ]

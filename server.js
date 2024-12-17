@@ -1,24 +1,28 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-const userRoutes = require("./routes/userRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(bodyParser.json());
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/customers", customerRoutes);
 
-// Start server
+// Default route
+app.get("/", (req, res) => {
+    res.send("ERP API is running!");
+});
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
