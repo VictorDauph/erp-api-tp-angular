@@ -212,8 +212,3 @@ Pour tester l'API :
    ```
 3. Testez les routes suivantes avec les méthodes `GET`, `POST`, `PUT` et `DELETE`.
 
----
-
-## **8. Conclusion**
-
-Cette API vous permet de gérer des utilisateurs, des produits, des commandes et des clients. Vous pouvez l'utiliser comme backend pour un **TP Angular** ou toute autre application nécessitant une API RESTful simple.
