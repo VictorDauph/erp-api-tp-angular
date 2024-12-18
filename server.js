@@ -7,7 +7,11 @@ const orderRoutes = require("./routes/orderRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 
 const app = express();
+const cors = require("cors");
 const PORT = 3000;
+
+// Middleware CORS pour autoriser toutes les origines
+app.use(cors());
 
 app.use(bodyParser.json());
 
