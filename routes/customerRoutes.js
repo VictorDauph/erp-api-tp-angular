@@ -18,8 +18,8 @@ router.get("/:id", authenticate, (req, res) => {
 });
 
 router.post("/", authenticate, (req, res) => {
-    const { name, email } = req.body;
-    const newCustomer = { id: customers.length + 1, name, email };
+    const { name, email, address, phone } = req.body;
+    const newCustomer = { id: customers.length + 1, name, email, address, phone, orders: [] };
     customers.push(newCustomer);
     saveData(customers);
     res.status(201).json(newCustomer);
@@ -29,9 +29,12 @@ router.put("/:id", authenticate, (req, res) => {
     const customer = customers.find((c) => c.id === parseInt(req.params.id));
     if (!customer) return res.status(404).json({ message: "Customer not found" });
 
-    const { name, email } = req.body;
+    const { name, email, address, phone, orders } = req.body;
     if (name) customer.name = name;
     if (email) customer.email = email;
+    if (address) customer.address = address;
+    if (phone) customer.phone = phone;
+    if (orders) customer.orders.push(...orders)
 
     saveData(customers);
     res.json(customer);

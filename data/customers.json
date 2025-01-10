@@ -6,7 +6,18 @@
         "phone": "0612345678",
         "address": "12 rue des Lilas, Paris, France",
         "orders": [
-            1
+            1,
+            2
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Jean Dupont2 mod",
+        "email": "jean.dupont@example.com mod",
+        "address": "12 rue des Lilas, Paris, France mod",
+        "phone": "0612345678 mod",
+        "orders": [
+            3
         ]
     }
 ]

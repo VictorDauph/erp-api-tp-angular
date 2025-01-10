@@ -31,6 +31,7 @@
     "id": 5,
     "productId": 1,
     "quantity": 5,
+    "userId": 1,
     "createdAt": "2024-12-17T15:12:40.910Z"
   }
 ]
