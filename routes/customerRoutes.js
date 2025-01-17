@@ -34,7 +34,7 @@ router.put("/:id", authenticate, (req, res) => {
     if (email) customer.email = email;
     if (address) customer.address = address;
     if (phone) customer.phone = phone;
-    if (orders) customer.orders.push(...orders)
+    if (orders) customer.orders = orders;
 
     saveData(customers);
     res.json(customer);
